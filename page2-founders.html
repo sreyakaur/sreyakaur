@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Founders - Sreya Kaur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #FBF9F5 0%, #F5F2ED 100%);
+            color: #5F5E5A;
+            line-height: 1.7;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(174, 134, 37, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #2C2C2A;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5F5E5A;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #AE8625;
+        }
+
+        .hero {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, rgba(174, 134, 37, 0.08) 0%, rgba(174, 134, 37, 0.04) 100%);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero .subtitle {
+            font-size: 16px;
+            color: #AE8625;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #2C2C2A;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #5F5E5A;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+            text-transform: uppercase;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #AE8625;
+            color: white;
+            box-shadow: 0 8px 24px rgba(174, 134, 37, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #9A7220;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(174, 134, 37, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #AE8625;
+            border: 2px solid #AE8625;
+        }
+
+        .btn-secondary:hover {
+            background: #AE8625;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 5rem 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2C2C2A;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #AE8625;
+            border-radius: 2px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            background: white;
+            border-left: 5px solid #AE8625;
+            border-radius: 0;
+        }
+
+        .problem-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 22px;
+            color: #2C2C2A;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .problem-card p {
+            font-size: 15px;
+            color: #5F5E5A;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .solution-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .solution-section h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 32px;
+            color: #2C2C2A;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .solution-item {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .solution-number {
+            font-family: 'Crimson Text', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #AE8625;
+            min-width: 50px;
+            line-height: 1;
+        }
+
+        .solution-content h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            color: #2C2C2A;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .solution-content p {
+            font-size: 14px;
+            color: #5F5E5A;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .results-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #2C2C2A 0%, #3D3D3A 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .results-section h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 28px;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .result-item h4 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #AE8625;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-item p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .process-section {
+            margin-top: 4rem;
+        }
+
+        .process-section h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 32px;
+            color: #2C2C2A;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            border-top: 4px solid #AE8625;
+        }
+
+        .timeline-item h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            color: #AE8625;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: #5F5E5A;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .cta-final {
+            padding: 4rem 3rem;
+            background: linear-gradient(135deg, #AE8625 0%, #C9A850 100%);
+            text-align: center;
+            margin-top: 4rem;
+            border-radius: 8px;
+        }
+
+        .cta-final h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 40px;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-final p {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            padding: 2rem 3rem;
+            background: #2C2C2A;
+            color: #8B7355;
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: #AE8625;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #C9A850;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .problem-grid, .solution-grid, .results-grid, .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Sreya Kaur</div>
+        <div style="display: flex; gap: 2rem;">
+            <a href="page1-about-services.html">Home</a>
+            <a href="#solutions">Solutions</a>
+            <a href="https://calendly.com/sreyaghosh007/30min">Book Call</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="subtitle">For Founders & Leaders</p>
+            <h1>Build Your Authority. Scale Your Visibility.</h1>
+            <p>Strategic personal branding and LinkedIn optimization to establish you as a thought leader, attract high quality opportunities, and grow your influence in your industry.</p>
+            <div class="cta-buttons">
+                <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-primary">Book Strategy Call</a>
+                <a href="#solutions" class="btn btn-secondary">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="solutions">
+        <h2 class="section-title">The Founder Challenge</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>Your Expertise Is Hidden</h3>
+                <p>You're brilliant at what you do, but the world doesn't know it. Your LinkedIn profile doesn't reflect your true value, and you're blending in with the crowd.</p>
+            </div>
+            <div class="problem-card">
+                <h3>Opportunities Are Passing You By</h3>
+                <p>Partnerships, speaking invitations, and high value clients go to those with visible authority. You're not top of mind for the right people.</p>
+            </div>
+            <div class="problem-card">
+                <h3>Building Authority Takes Time</h3>
+                <p>You know you need to build your personal brand, but you're already stretched thin running your business. Consistency feels impossible.</p>
+            </div>
+            <div class="problem-card">
+                <h3>Your Narrative Isn't Clear</h3>
+                <p>You struggle to articulate what makes you different and why people should pay attention to you instead of your competitors.</p>
+            </div>
+        </div>
+
+        <div class="solution-section">
+            <h3>The Sreya Solution</h3>
+            <div class="solution-grid">
+                <div class="solution-item">
+                    <div class="solution-number">01</div>
+                    <div class="solution-content">
+                        <h4>Strategic Positioning</h4>
+                        <p>We define your unique value proposition and craft a compelling narrative that sets you apart from competitors and resonates with your ideal audience.</p>
+                    </div>
+                </div>
+                <div class="solution-item">
+                    <div class="solution-number">02</div>
+                    <div class="solution-content">
+                        <h4>LinkedIn Mastery</h4>
+                        <p>Optimize your profile, establish a consistent content strategy, and leverage LinkedIn to position you as a visible authority in your industry.</p>
+                    </div>
+                </div>
+                <div class="solution-item">
+                    <div class="solution-number">03</div>
+                    <div class="solution-content">
+                        <h4>Content That Converts</h4>
+                        <p>Strategic, authentic content that builds trust, demonstrates expertise, and attracts the right opportunities and connections.</p>
+                    </div>
+                </div>
+                <div class="solution-item">
+                    <div class="solution-number">04</div>
+                    <div class="solution-content">
+                        <h4>Consistent Execution</h4>
+                        <p>I handle the strategy and execution, so you stay visible and on brand without it consuming your time or energy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h3>What Founders Experience</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <h4>3-5x</h4>
+                        <p>Increase in LinkedIn visibility and engagement within 3 months</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>High Quality</h4>
+                        <p>Connections and partnership opportunities aligned with your vision</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>Thought Leader</h4>
+                        <p>Status in your industry within 6 months of consistent strategy</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-section">
+                <h3>How We Work Together</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Discovery & Strategy</h4>
+                        <p>We align on your goals, clarify your unique positioning, and develop a 90 day roadmap tailored to your vision.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Profile & Content</h4>
+                        <p>We optimize your LinkedIn presence and launch a strategic content calendar that builds your authority consistently.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Growth & Scale</h4>
+                        <p>Monitor, refine, and scale what's working. You become the thought leader you're meant to be.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="cta-final">
+            <h2>Ready to Build Your Authority?</h2>
+            <p>Let's have a conversation about your vision, where you want to be, and how we can strategically position you as the leader your industry needs.</p>
+            <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-primary">Book Your 30 Min Strategy Call</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sreya Kaur. All rights reserved. | <a href="https://www.linkedin.com/in/sreya-kaur-4a91b892/">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
