@@ -4,527 +4,825 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sreya Kaur - Personal Branding & Content Strategy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #AE8625;
+            --gold-light: #C9A850;
+            --gold-pale: rgba(174,134,37,0.08);
+            --dark: #2C2C2A;
+            --dark2: #3D3D3A;
+            --text: #5F5E5A;
+            --muted: #7A7975;
+            --bg: #FBF9F5;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #FBF9F5 0%, #F5F2ED 100%);
-            color: #5F5E5A;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
+        /* ─── PARTICLE CANVAS ─── */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.35;
+        }
+
+        /* ─── NAV ─── */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 3rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(174, 134, 37, 0.15);
+            padding: 1.2rem 3rem;
+            background: rgba(251,249,245,0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(174,134,37,0.12);
             position: sticky;
             top: 0;
-            z-index: 100;
-            animation: slideDown 0.6s ease-out;
+            z-index: 500;
+            animation: navDrop 0.8s cubic-bezier(0.16,1,0.3,1) both;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes navDrop {
+            from { opacity: 0; transform: translateY(-100%); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .logo {
-            font-family: 'Crimson Text', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #2C2C2A;
-            letter-spacing: 1px;
-        }
-
-        nav a {
+        /* SK MONOGRAM LOGO */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
             text-decoration: none;
-            color: #5F5E5A;
-            font-size: 14px;
-            font-weight: 600;
+        }
+
+        .sk-monogram {
+            width: 44px;
+            height: 44px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .sk-monogram svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 8px rgba(174,134,37,0.4));
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), filter 0.4s;
+        }
+
+        .logo-wrap:hover .sk-monogram svg {
+            transform: rotate(5deg) scale(1.08);
+            filter: drop-shadow(0 4px 16px rgba(174,134,37,0.6));
+        }
+
+        .logo-text {
+            font-family: 'Crimson Text', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
             letter-spacing: 0.5px;
-            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
+            color: var(--gold);
+            margin-top: 2px;
         }
 
-        nav a:hover {
-            color: #AE8625;
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+
+        .nav-links > a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
         }
 
+        .nav-links > a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0;
+            width: 0; height: 1.5px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links > a:hover { color: var(--gold); }
+        .nav-links > a:hover::after { width: 100%; }
+
+        .dropdown { position: relative; }
+        .dropdown-trigger {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text);
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .dropdown:hover .dropdown-trigger,
+        .dropdown-trigger.open { color: var(--gold); }
+
+        .arrow { display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid currentColor; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); margin-top: 1px; }
+        .dropdown:hover .arrow, .arrow.open { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid rgba(174,134,37,0.18);
+            border-radius: 8px;
+            min-width: 220px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: menuPop 0.25s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes menuPop {
+            from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(0.96); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+
+        .dropdown:hover .dropdown-menu { display: block; }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.9rem 1.5rem;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+            border-bottom: 1px solid rgba(174,134,37,0.07);
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: var(--gold-pale); color: var(--gold); padding-left: 1.9rem; }
+
+        .nav-book {
+            padding: 10px 24px;
+            background: var(--gold);
+            color: white !important;
+            border-radius: 4px;
+            font-size: 11px !important;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700 !important;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 14px rgba(174,134,37,0.3);
+        }
+        .nav-book:hover { background: #9A7220 !important; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(174,134,37,0.45) !important; }
+
+        /* ─── HERO ─── */
         .hero {
-            padding: 5rem 3rem;
-            max-width: 1000px;
+            padding: 7rem 3rem 5rem;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.6rem;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.3s forwards;
         }
 
         .hero h1 {
             font-family: 'Crimson Text', serif;
-            font-size: 64px;
+            font-size: 68px;
             font-weight: 700;
-            color: #2C2C2A;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            color: var(--dark);
+            line-height: 1.1;
             letter-spacing: -1px;
+            margin-bottom: 1.8rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
         }
 
-        .hero .subtitle {
-            font-size: 18px;
-            color: #8B7355;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
+        /* Word-by-word gold shimmer on h1 words */
+        .hero h1 .word {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero h1 .gold-word {
+            background: linear-gradient(90deg, var(--dark) 0%, var(--gold) 50%, var(--dark) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
         }
 
         .hero p {
-            font-size: 18px;
-            color: #5F5E5A;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 2.8rem;
+            line-height: 1.95;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.7s forwards;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.2rem;
             justify-content: center;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.9s forwards;
         }
 
         .btn {
-            padding: 16px 40px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            padding: 14px 38px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
             border-radius: 4px;
             text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
             font-family: 'Quicksand', sans-serif;
             text-transform: uppercase;
             border: 2px solid transparent;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary {
-            background: #AE8625;
-            color: white;
-            box-shadow: 0 8px 24px rgba(174, 134, 37, 0.25);
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.15);
+            transform: translateX(-100%) skewX(-15deg);
+            transition: transform 0.4s ease;
         }
+        .btn:hover::before { transform: translateX(100%) skewX(-15deg); }
 
-        .btn-primary:hover {
-            background: #9A7220;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(174, 134, 37, 0.35);
+        .btn-primary { background: var(--gold); color: white; box-shadow: 0 8px 24px rgba(174,134,37,0.3); }
+        .btn-primary:hover { background: #9A7220; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(174,134,37,0.4); }
+        .btn-secondary { background: transparent; color: var(--gold); border-color: var(--gold); }
+        .btn-secondary:hover { background: var(--gold); color: white; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(174,134,37,0.3); }
+
+        /* ─── SCROLL REVEAL BASE ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .btn-secondary {
-            background: transparent;
-            color: #AE8625;
-            border: 2px solid #AE8625;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .btn-secondary:hover {
-            background: #AE8625;
-            color: white;
-            transform: translateY(-2px);
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
         }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
+        /* Stagger children */
+        .stagger > * { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0s; }
+        .stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.12s; }
+        .stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.24s; }
+        .stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.36s; }
+
+        /* ─── ABOUT ─── */
         .about {
-            padding: 5rem 3rem;
-            max-width: 1000px;
+            padding: 7rem 3rem;
+            max-width: 1060px;
             margin: 0 auto;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
             font-family: 'Crimson Text', serif;
-            font-size: 48px;
+            font-size: 46px;
             font-weight: 700;
-            color: #2C2C2A;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #AE8625;
-            border-radius: 2px;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+            line-height: 1.15;
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 5rem;
             align-items: center;
+            margin-top: 3.5rem;
         }
 
-        .about-text h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 28px;
-            color: #2C2C2A;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
+        .about-text p { font-size: 15px; color: #6B6A66; line-height: 1.95; margin-bottom: 1.4rem; }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 16px;
-        }
-
-        .highlights {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+        .highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
 
         .highlight-item {
-            padding: 1.5rem;
-            background: rgba(174, 134, 37, 0.08);
-            border-left: 4px solid #AE8625;
+            padding: 1.1rem 1.2rem;
+            background: var(--gold-pale);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+            transition: background 0.3s, transform 0.3s;
         }
+        .highlight-item:hover { background: rgba(174,134,37,0.14); transform: translateX(4px); }
 
-        .highlight-item h4 {
-            font-family: 'Crimson Text', serif;
-            font-size: 18px;
-            color: #AE8625;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .highlight-item p {
-            font-size: 14px;
-            color: #5F5E5A;
-            margin: 0;
-        }
+        .highlight-item h4 { font-family: 'Crimson Text', serif; font-size: 16px; color: var(--gold); margin-bottom: 0.2rem; font-weight: 700; }
+        .highlight-item p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.6; }
 
         .about-image {
-            background: linear-gradient(135deg, #AE8625 0%, #C9A850 100%);
-            height: 400px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            height: 440px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(174,134,37,0.25);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 60%, rgba(174,134,37,0.3));
+        }
+
+        .about-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ─── STRATEGY ─── */
+        .strategy {
+            padding: 7rem 3rem;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .strategy::before {
+            content: 'SK';
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28rem;
+            color: rgba(174,134,37,0.03);
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .strategy-inner { max-width: 1000px; margin: 0 auto; position: relative; }
+        .strategy-intro { margin-bottom: 3.5rem; }
+        .strategy-intro p { font-size: 15px; color: var(--muted); max-width: 540px; margin-top: 0.8rem; line-height: 1.9; }
+
+        .strategy-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-bottom: 3rem; }
+
+        .strategy-card {
+            padding: 2.2rem;
+            border: 1px solid rgba(174,134,37,0.15);
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
             overflow: hidden;
         }
 
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .services {
-            padding: 5rem 3rem;
-            background: white;
-            margin-top: 3rem;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-
-        .services-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, #FBF9F5 0%, #F5F2ED 100%);
-            border: 1px solid rgba(174, 134, 37, 0.2);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(174, 134, 37, 0.15);
-            border-color: rgba(174, 134, 37, 0.4);
-        }
-
-        .service-card h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 24px;
-            color: #2C2C2A;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            font-size: 15px;
-            color: #5F5E5A;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-            font-size: 14px;
-            color: #5F5E5A;
-        }
-
-        .service-features li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .service-features li::before {
-            content: '✓';
+        .strategy-card::before {
+            content: '';
             position: absolute;
-            left: 0;
-            color: #AE8625;
-            font-weight: bold;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
-        .cta-section {
-            padding: 4rem 3rem;
-            background: linear-gradient(135deg, #2C2C2A 0%, #3D3D3A 100%);
-            color: white;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
-            margin-top: 5rem;
-        }
+        .strategy-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(174,134,37,0.15); border-color: rgba(174,134,37,0.35); }
+        .strategy-card:hover::before { transform: scaleX(1); }
 
-        .cta-section h2 {
+        .strategy-card .num {
             font-family: 'Crimson Text', serif;
             font-size: 44px;
-            margin-bottom: 1.5rem;
+            color: rgba(174,134,37,0.18);
             font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
         }
 
-        .cta-section p {
-            font-size: 18px;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            color: rgba(255, 255, 255, 0.9);
-        }
+        .strategy-card h3 { font-family: 'Crimson Text', serif; font-size: 22px; color: var(--dark); margin-bottom: 0.7rem; font-weight: 700; }
+        .strategy-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
 
-        .cta-section .btn {
-            background: #AE8625;
-            color: white;
-            box-shadow: 0 8px 24px rgba(174, 134, 37, 0.4);
-        }
+        .strategy-cta { text-align: center; }
 
-        .cta-section .btn:hover {
-            background: #C9A850;
-            transform: translateY(-2px);
-        }
+        /* ─── WHO ─── */
+        .who { padding: 7rem 3rem; max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+        .who-intro { margin-bottom: 3rem; }
+        .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-        footer {
-            padding: 2rem 3rem;
-            background: #2C2C2A;
-            color: #8B7355;
-            text-align: center;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
-
-        footer a {
-            color: #AE8625;
+        .who-card {
+            padding: 2.8rem;
+            border-radius: 12px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            display: block;
+            position: relative;
+            overflow: hidden;
         }
 
-        footer a:hover {
-            color: #C9A850;
+        .who-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.3s;
+        }
+        .who-card:hover::after { background: rgba(255,255,255,0.05); }
+
+        .who-card.founders { background: linear-gradient(135deg, #2C2C2A 0%, #3D3D3A 100%); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .who-card.pet      { background: linear-gradient(135deg, #AE8625 0%, #C9A850 100%); box-shadow: 0 20px 60px rgba(174,134,37,0.3); }
+        .who-card:hover    { transform: translateY(-10px) scale(1.01); }
+        .who-card.founders:hover { box-shadow: 0 32px 80px rgba(0,0,0,0.3); }
+        .who-card.pet:hover { box-shadow: 0 32px 80px rgba(174,134,37,0.45); }
+
+        .who-card .tag { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+        .who-card h3  { font-family: 'Crimson Text', serif; font-size: 28px; font-weight: 700; color: white; margin-bottom: 1rem; line-height: 1.2; }
+        .who-card p   { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.85; margin-bottom: 1.8rem; }
+
+        .who-card .link {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s;
+        }
+        .who-card:hover .link { gap: 12px; }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(174,134,37,0.15) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+            50%       { transform: translate(-50%,-50%) scale(1.2); opacity: 0.4; }
+        }
+
+        .cta-section h2 { font-family: 'Crimson Text', serif; font-size: 46px; color: white; margin-bottom: 1.2rem; font-weight: 700; position: relative; }
+        .cta-section p  { font-size: 16px; color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.85; position: relative; }
+
+        /* ─── FOOTER ─── */
+        footer { padding: 2rem 3rem; background: var(--dark); color: #8B7355; text-align: center; font-size: 13px; border-top: 1px solid rgba(174,134,37,0.1); }
+        footer a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold-light); }
+
+        /* ─── KEYFRAMES ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── CURSOR GLOW ─── */
+        .cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(174,134,37,0.08) 0%, transparent 70%);
+            transform: translate(-50%,-50%);
+            transition: left 0.12s ease, top 0.12s ease;
+            z-index: 0;
+        }
+
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .hero {
-                padding: 3rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .about, .services {
-                padding: 3rem 1.5rem;
-            }
-
-            .about-grid, .services-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .highlights {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                gap: 1rem;
-            }
-
-            .btn {
-                padding: 14px 28px;
-                font-size: 12px;
-            }
+            nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
+            .hero { padding: 4rem 1.5rem 3rem; }
+            .hero h1 { font-size: 40px; }
+            .about, .who { padding: 4rem 1.5rem; }
+            .about-grid, .who-grid, .strategy-cards { grid-template-columns: 1fr; gap: 2.5rem; }
+            .strategy { padding: 4rem 1.5rem; }
+            .section-title { font-size: 36px; }
+            .highlights { grid-template-columns: 1fr; }
+            .strategy::before { font-size: 16rem; }
+            #particles { display: none; }
+            .cursor-glow { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <canvas id="particles"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- NAV -->
     <nav>
-        <div class="logo">Sreya Kaur</div>
-        <div style="display: flex; gap: 2rem;">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="https://calendly.com/sreyaghosh007/30min">Book Call</a>
+        <a class="logo-wrap" href="index.html">
+            <!-- SK Monogram SVG -->
+            <div class="sk-monogram">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer octagonal frame -->
+                    <path d="M22 2L38 8V22V36L22 42L6 36V22V8L22 2Z" stroke="url(#goldGrad)" stroke-width="1.2" fill="none" opacity="0.6"/>
+                    <!-- Inner diamond -->
+                    <path d="M22 8L34 22L22 36L10 22Z" fill="url(#goldFill)" opacity="0.12"/>
+                    <!-- S letter -->
+                    <path d="M14 17.5C14 15.5 15.8 14 18 14H20.5C22.2 14 23.5 15.1 23.5 16.5C23.5 17.9 22.2 19 20.5 19H18C16.3 19 15 20.1 15 21.5C15 22.9 16.3 24 18 24H20.5C22.2 24 23.5 25.1 23.5 26.5C23.5 27.9 22.2 29 20.5 29H18C15.8 29 14 27.5 14 25.5" stroke="url(#goldGrad)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                    <!-- K letter -->
+                    <path d="M26 14V29M26 22L31 14M26 22L31 29" stroke="url(#goldGrad)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <defs>
+                        <linearGradient id="goldGrad" x1="6" y1="2" x2="38" y2="42" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#E8C96A"/>
+                            <stop offset="40%" stop-color="#AE8625"/>
+                            <stop offset="70%" stop-color="#C9A850"/>
+                            <stop offset="100%" stop-color="#8B6914"/>
+                        </linearGradient>
+                        <linearGradient id="goldFill" x1="10" y1="8" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#AE8625"/>
+                            <stop offset="100%" stop-color="#C9A850"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="logo-text">
+                Sreya Kaur
+                <span>Branding &amp; Strategy</span>
+            </div>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <div class="dropdown-trigger">Services <span class="arrow"></span></div>
+                <div class="dropdown-menu">
+                    <a href="services.html#founders">For Founders</a>
+                    <a href="services.html#pet-professionals">For Pet Professionals</a>
+                </div>
+            </div>
+            <a href="https://calendly.com/sreyaghosh007/30min" class="nav-book">Book a Call</a>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
-        <p class="subtitle">Welcome</p>
-        <h1>Personal Branding & Content Strategy</h1>
-        <p>I help you build authentic narratives that resonate with your audience, elevate your visibility, and create meaningful impact in your industry.</p>
+        <p class="hero-label">Personal Branding &amp; Content Strategy</p>
+        <h1>
+            <span class="word">Your</span> <span class="word gold-word">Story,</span><br>
+            <span class="word">Told</span> <span class="word">Authentically</span>
+        </h1>
+        <p>I help ambitious founders and passionate professionals build narratives that resonate, elevate visibility, and create meaningful impact in their industry.</p>
         <div class="cta-buttons">
             <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-primary">Book a Call</a>
-            <a href="#about" class="btn btn-secondary">Learn More</a>
+            <a href="services.html" class="btn btn-secondary">Explore Services</a>
         </div>
     </section>
 
+    <!-- ABOUT -->
     <section class="about" id="about">
-        <h2 class="section-title">About Me</h2>
+        <div class="reveal">
+            <p class="section-label">About Me</p>
+            <h2 class="section-title">Expert in Personal Branding &amp; Visibility</h2>
+        </div>
         <div class="about-grid">
-            <div class="about-text">
-                <h3>Expert in Personal Branding & Visibility</h3>
+            <div class="about-text reveal-left">
                 <p>With a passion for authentic storytelling and deep expertise in personal branding, I work with ambitious professionals who want to build authority in their field.</p>
                 <p>My approach combines strategic thinking with meticulous execution. Every project receives the same level of care and attention to detail, regardless of scope.</p>
-                <p>Whether you're a founder scaling your visibility or a creative professional building your brand, I'm here to help you stand out authentically.</p>
-                <div class="highlights">
+                <p>Whether you're a founder scaling your visibility or a pet professional building your brand, I'm here to help you stand out authentically.</p>
+                <div class="highlights stagger">
                     <div class="highlight-item">
                         <h4>Detail-Oriented</h4>
                         <p>Meticulous attention to every element of your brand narrative</p>
                     </div>
                     <div class="highlight-item">
                         <h4>Quick Delivery</h4>
-                        <p>Fast turnaround without sacrificing quality or authenticity</p>
+                        <p>Fast turnaround without sacrificing quality</p>
                     </div>
                     <div class="highlight-item">
                         <h4>Strategic Thinking</h4>
-                        <p>Thoughtful analysis ensuring solutions fit your specific needs</p>
+                        <p>Solutions tailored to your specific needs</p>
                     </div>
                     <div class="highlight-item">
                         <h4>Transparent</h4>
-                        <p>Honest about expertise and always learning and improving</p>
+                        <p>Honest, always learning and improving</p>
                     </div>
                 </div>
             </div>
-            <div class="about-image">
-                <img src="images/img_1.png" alt="Sreya Kaur - Personal Branding Expert">
+            <div class="about-image reveal-right">
+                <img src="images/img_1.png" alt="Sreya Kaur">
             </div>
         </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="services-container">
-            <h2 class="section-title">My Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Personal Branding</h3>
-                    <p>Build an authentic professional identity that sets you apart in your industry and attracts the right opportunities.</p>
-                    <ul class="service-features">
-                        <li>Brand strategy and positioning</li>
-                        <li>Authentic narrative development</li>
-                        <li>Visual identity guidelines</li>
-                        <li>Personal brand audit</li>
-                    </ul>
+    <!-- STRATEGY -->
+    <section class="strategy">
+        <div class="strategy-inner">
+            <div class="strategy-intro reveal">
+                <p class="section-label">My Approach</p>
+                <h2 class="section-title">A Strategy Built Around You</h2>
+                <p>Every brand is unique. My process starts with understanding your story, then crafting a roadmap that amplifies your voice and connects you to your audience.</p>
+            </div>
+            <div class="strategy-cards stagger">
+                <div class="strategy-card">
+                    <div class="num">01</div>
+                    <h3>Discover &amp; Define</h3>
+                    <p>We uncover your unique value, clarify your positioning, and craft a compelling narrative that sets you apart.</p>
                 </div>
-                <div class="service-card">
-                    <h3>LinkedIn Optimization</h3>
-                    <p>Transform your LinkedIn presence into a powerful visibility and authority-building tool for your professional growth.</p>
-                    <ul class="service-features">
-                        <li>Profile optimization</li>
-                        <li>Content strategy</li>
-                        <li>Engagement planning</li>
-                        <li>Growth tracking</li>
-                    </ul>
+                <div class="strategy-card">
+                    <div class="num">02</div>
+                    <h3>Build &amp; Execute</h3>
+                    <p>From profile optimisation to content calendars, every element is designed to build your authority consistently.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Content Creation</h3>
-                    <p>Compelling, strategic content that tells your story and resonates deeply with your target audience.</p>
-                    <ul class="service-features">
-                        <li>Content strategy</li>
-                        <li>Copywriting and design</li>
-                        <li>Social media content</li>
-                        <li>Storytelling frameworks</li>
-                    </ul>
+                <div class="strategy-card">
+                    <div class="num">03</div>
+                    <h3>Grow &amp; Scale</h3>
+                    <p>We monitor, refine, and scale what works, turning your presence into a powerful engine for opportunities.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Social Media Management</h3>
-                    <p>Strategic social media presence that builds community, engagement, and meaningful connections with your audience.</p>
-                    <ul class="service-features">
-                        <li>Account management</li>
-                        <li>Content calendar</li>
-                        <li>Community engagement</li>
-                        <li>Analytics and reporting</li>
-                    </ul>
-                </div>
+            </div>
+            <div class="strategy-cta reveal">
+                <a href="services.html" class="btn btn-primary">Learn More About My Services</a>
             </div>
         </div>
     </section>
 
-    <section class="cta-section" id="contact">
-        <h2>Ready to Elevate Your Brand?</h2>
-        <p>Let's have a conversation about your goals, vision, and how I can help you build an authentic presence that resonates with your audience.</p>
-        <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-primary">Book a 30-Min Call</a>
+    <!-- WHO -->
+    <section class="who">
+        <div class="who-intro reveal">
+            <p class="section-label">Who I Work With</p>
+            <h2 class="section-title">Tailored for Your World</h2>
+        </div>
+        <div class="who-grid stagger">
+            <a href="services.html#founders" class="who-card founders">
+                <div class="tag">Founders &amp; Leaders</div>
+                <h3>Build Authority. Scale Visibility.</h3>
+                <p>Strategic personal branding and LinkedIn optimisation to position you as a thought leader and attract high-quality opportunities.</p>
+                <div class="link">Explore For Founders &rarr;</div>
+            </a>
+            <a href="services.html#pet-professionals" class="who-card pet">
+                <div class="tag">Pet Professionals</div>
+                <h3>Make Your Pet Brand Unforgettable.</h3>
+                <p>Vibrant storytelling and content strategy to help your pet business stand out and build a loyal, engaged community.</p>
+                <div class="link">Explore For Pet Professionals &rarr;</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="reveal">Ready to Elevate Your Brand?</h2>
+        <p class="reveal">Let's talk about your goals and how I can help you build an authentic presence that truly resonates.</p>
+        <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-primary reveal">Book a 30-Min Call</a>
     </section>
 
     <footer>
         <p>&copy; 2025 Sreya Kaur. All rights reserved. | <a href="https://www.linkedin.com/in/sreya-kaur-4a91b892/">LinkedIn</a></p>
     </footer>
+
+    <script>
+        /* ── Floating particles ── */
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function rand(a, b) { return Math.random() * (b - a) + a; }
+
+        for (let i = 0; i < 55; i++) {
+            particles.push({
+                x: rand(0, window.innerWidth),
+                y: rand(0, window.innerHeight),
+                r: rand(1, 2.8),
+                dx: rand(-0.3, 0.3),
+                dy: rand(-0.5, -0.1),
+                alpha: rand(0.2, 0.7)
+            });
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(174,134,37,${p.alpha})`;
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.y < -5) { p.y = H + 5; p.x = rand(0, W); }
+                if (p.x < -5 || p.x > W + 5) { p.x = rand(0, W); }
+            });
+            requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+
+        /* ── Cursor glow ── */
+        const glow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top  = e.clientY + 'px';
+        });
+
+        /* ── Scroll reveal ── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => observer.observe(el));
+
+        /* ── Dropdown click ── */
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const menu = this.parentElement.querySelector('.dropdown-menu');
+                const isOpen = menu.style.display === 'block';
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+                menu.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        });
+    </script>
+
 </body>
 </html>
