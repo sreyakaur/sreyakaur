@@ -208,6 +208,147 @@
         .reco-card .reco-name { font-size: 13px; font-weight: 700; color: var(--dark); }
         .reco-card .reco-role { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.3px; margin-top: 3px; }
 
+        /* ─── FEATURED WORK / CASE STUDIES ─── */
+        .featured-work { padding: 4.5rem 0; background: white; position: relative; overflow: hidden; }
+        .featured-work-inner { max-width: 1280px; margin: 0 auto; padding: 0 3rem; }
+
+        .featured-intro { margin-bottom: 3.5rem; }
+        .featured-intro h2 { font-family: 'Crimson Text', serif; font-size: 44px; color: var(--dark); font-weight: 700; margin-bottom: 0.8rem; }
+        .featured-intro p { font-size: 16px; color: var(--text); max-width: 600px; line-height: 1.8; }
+
+        .case-studies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+
+        .case-card {
+            background: linear-gradient(135deg, white 0%, rgba(251,249,245,0.4) 100%);
+            border: 1px solid rgba(174,134,37,0.15);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(174,134,37,0.35);
+            box-shadow: 0 20px 50px rgba(174,134,37,0.12);
+            background: linear-gradient(135deg, white 0%, rgba(251,249,245,0.6) 100%);
+        }
+
+        .case-card:hover::before { opacity: 1; }
+
+        .case-header { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: flex-start; }
+        .case-num {
+            font-family: 'Crimson Text', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            min-width: 60px;
+        }
+
+        .case-meta h3 { font-family: 'Crimson Text', serif; font-size: 20px; color: var(--dark); font-weight: 700; margin-bottom: 0.4rem; }
+        .case-type { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        .case-brief {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .case-brief p {
+            font-size: 13.5px;
+            color: var(--text);
+            line-height: 1.75;
+        }
+
+        .case-brief strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .case-result {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(174,134,37,0.15);
+        }
+
+        .result-item {
+            text-align: left;
+        }
+
+        .result-num {
+            display: block;
+            font-family: 'Crimson Text', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .result-label {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .case-quote {
+            font-size: 12.5px;
+            color: var(--text);
+            line-height: 1.7;
+            font-style: italic;
+            margin: 0;
+            padding: 0;
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        .case-quote footer {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 0.6rem;
+            font-size: 11px;
+        }
+
+        .featured-cta {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(174,134,37,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(174,134,37,0.15);
+        }
+
+        .featured-cta p {
+            font-size: 15px;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+        }
+
+        .featured-cta .btn {
+            margin-top: 0.5rem;
+        }
+
         /* ─── SECTION CTA ─── */
         .section-cta { padding: 3rem; background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); border-radius: 12px; text-align: center; position: relative; overflow: hidden; }
         .section-cta::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(174,134,37,0.12) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); animation:pulse 4s ease-in-out infinite; }
@@ -227,6 +368,7 @@
             .overview { grid-template-columns: 1fr; }
             .service-cards, .steps-row { grid-template-columns: 1fr 1fr; }
             .steps-row::before { display: none; }
+            .case-studies-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 640px) {
             nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
@@ -239,6 +381,11 @@
             .photo-block { flex-direction: column; }
             .photo-block .photo-img { width: 100%; min-width: unset; height: 220px; }
             .photo-block .photo-text { padding: 1.5rem; }
+            .featured-work-inner { padding: 0 1.5rem; }
+            .featured-intro h2 { font-size: 28px; }
+            .case-studies-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .case-card { padding: 1.5rem; }
+            .case-header { flex-direction: column; gap: 1rem; }
             #particles { display: none; }
             .cursor-glow { display: none; }
         }
@@ -452,6 +599,108 @@
             <a href="https://calendly.com/sreyaghosh007/30min" class="btn btn-gold">Book Your Discovery Call</a>
         </div>
     </div>
+
+    <!-- FEATURED WORK / CASE STUDIES -->
+    <section class="featured-work">
+        <div class="featured-work-inner">
+            <div class="featured-intro reveal">
+                <span class="label">Featured Work</span>
+                <h2>Real Results. Real Clients.</h2>
+                <p>A snapshot of the transformations I've created across industries — from founder visibility to brand launches.</p>
+            </div>
+
+            <div class="case-studies-grid stagger">
+                <!-- Case Study 1: Harley's Corner (Pet + Founder) -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-num">04</div>
+                        <div class="case-meta">
+                            <h3>Harley's Corner</h3>
+                            <p class="case-type">Pet Food D2C · India · 24+ months</p>
+                        </div>
+                    </div>
+                    <div class="case-brief">
+                        <p><strong>The Brief:</strong> A pet nutrition D2C brand needed a LinkedIn presence that worked as both a serious founder-led business AND carried the personal story of Harley, the dog who inspired it.</p>
+                    </div>
+                    <div class="case-result">
+                        <div class="result-item">
+                            <div class="result-num">2×</div>
+                            <div class="result-label">Follower Growth</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-num">24+</div>
+                            <div class="result-label">Months Retained</div>
+                        </div>
+                    </div>
+                    <blockquote class="case-quote">
+                        "Sreya is known for her timely responses, always going above and beyond. Her ability to communicate effectively makes working with her not just seamless but also enjoyable."
+                        <footer>— Ishmeet Singh Chandiok, Founder</footer>
+                    </blockquote>
+                </div>
+
+                <!-- Case Study 2: Thrive with Mentoring (Long-term growth) -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-num">01</div>
+                        <div class="case-meta">
+                            <h3>Thrive with Mentoring</h3>
+                            <p class="case-type">Non-Profit · Switzerland · 4+ years</p>
+                        </div>
+                    </div>
+                    <div class="case-brief">
+                        <p><strong>The Brief:</strong> A global non-profit had a dormant LinkedIn page with 3,000 followers and no content engine. They needed a four-year organic growth strategy.</p>
+                    </div>
+                    <div class="case-result">
+                        <div class="result-item">
+                            <div class="result-num">3×</div>
+                            <div class="result-label">Page Growth</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-num">100%</div>
+                            <div class="result-label">Organic</div>
+                        </div>
+                    </div>
+                    <blockquote class="case-quote">
+                        Grew the page from 3K to 9K+ followers entirely organically over four consecutive years—zero paid spend, zero handovers.
+                        <footer>— Public LinkedIn page proof</footer>
+                    </blockquote>
+                </div>
+
+                <!-- Case Study 3: YSPN (Zero-to-one launch) -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-num">02</div>
+                        <div class="case-meta">
+                            <h3>YSPN Pulse Newsletter</h3>
+                            <p class="case-type">Non-Profit Newsletter · Global · 2024–Active</p>
+                        </div>
+                    </div>
+                    <div class="case-brief">
+                        <p><strong>The Brief:</strong> A global Sikh professional community wanted a monthly LinkedIn newsletter. I proposed, launched, and now run it end-to-end from inception.</p>
+                    </div>
+                    <div class="case-result">
+                        <div class="result-item">
+                            <div class="result-num">4,371</div>
+                            <div class="result-label">Subscribers</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-num">+10.6%</div>
+                            <div class="result-label">Weekly Growth</div>
+                        </div>
+                    </div>
+                    <blockquote class="case-quote">
+                        Sixteen consecutive monthly editions, still compounding growth. Zero-to-one launches that sustain momentum when built on the right foundation.
+                        <footer>— Active as of April 2026</footer>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div class="featured-cta reveal">
+                <p>See the full portfolio — all eight case studies across founders, non-profits, FMCG, SaaS, and more.</p>
+                <a href="/Sreya_Kaur_Portfolio.pdf" class="btn btn-secondary" download>Download Full Portfolio Deck</a>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2025 Sreya Kaur. All rights reserved. | <a href="https://www.linkedin.com/in/sreya-kaur-4a91b892/">LinkedIn</a></p>
